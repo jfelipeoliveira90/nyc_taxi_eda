@@ -1,0 +1,34 @@
+---
+title: "NYC Taxi EDA"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r definition}
+library('data.table')
+library('tibble')
+library('dplyr')
+library('leaflet')
+```
+
+## Comandos aprendidos
+
+Similar ao 'read.table' só que mais rápido
+
+```{r, echo=TRUE}
+fread('./data/train.csv') %>%
+  summary()
+```
+
+Exibe um mapa com pontos de localização
+```{r,echo=TRUE}
+set.seed(1234)
+train <- as_tibble(fread('./data/train.csv'))
+foo <- sample_n(train, 8e3)
+
+leaflet(data = foo) %>% addProviderTiles("Esri.NatGeoWorldMap") %>%
+  addCircleMarkers(~ pickup_longitude, ~pickup_latitude, radius = 1,
+                   color = "blue", fillOpacity = 0.3)
+```
