@@ -35,6 +35,8 @@ Queremos examinar quais fatores contribuem para períodos de viagem mais curtos 
 
 ## Insights
 
+### Queda nas corridas em um determinado período
+
 Foi identificado uma queda nas corridas entre os meses de Janeiro e Fevereiro, uma possível causa seja o inverno em Nova York.
 
 ![](./images/unnamed-chunk-16-1.png)
@@ -42,6 +44,8 @@ Foi identificado uma queda nas corridas entre os meses de Janeiro e Fevereiro, u
 Obtendo os dados dos boletins meteorológicos do período em questão, podemos comparar as estatísticas de queda de neve com os números de nossas viagens por dia.
 
 ![](./images/unnamed-chunk-55-1.png)
+
+
 
 ## Comandos aprendidos
 
