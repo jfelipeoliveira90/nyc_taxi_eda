@@ -3,15 +3,41 @@ title: "NYC Taxi EDA"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
 ```
 
 ```{r definition}
-library('data.table')
-library('tibble')
-library('dplyr')
-library('leaflet')
+library('ggplot2') # visualisation
+library('scales') # visualisation
+library('grid') # visualisation
+library('RColorBrewer') # visualisation
+library('corrplot') # visualisation
+library('alluvial') # visualisation
+library('dplyr') # data manipulation
+library('readr') # input/output
+library('data.table') # data manipulation
+library('tibble') # data wrangling
+library('tidyr') # data wrangling
+library('stringr') # string manipulation
+library('forcats') # factor manipulation
+library('lubridate') # date and time
+library('geosphere') # geospatial locations
+library('leaflet') # maps
+library('leaflet.extras') # maps
+library('maps') # maps
+library('xgboost') # modelling
+library('caret') # modelling
 ```
+
+## Insights
+
+Foi identificado uma queda nas corridas entre os meses de Janeiro e Fevereiro, uma possível causa seja o inverno em Nova York.
+
+![](./images/unnamed-chunk-16-1.png)
+
+Obtendo os dados dos boletins meteorológicos do período em questão, podemos comparar as estatísticas de queda de neve com os números de nossas viagens por dia.
+
+![](./images/unnamed-chunk-55-1.png)
 
 ## Comandos aprendidos
 
@@ -22,13 +48,8 @@ fread('./data/train.csv') %>%
   summary()
 ```
 
-Exibe um mapa com pontos de localização
+Exibe um mapa interativo
 ```{r,echo=TRUE}
-set.seed(1234)
-train <- as_tibble(fread('./data/train.csv'))
-foo <- sample_n(train, 8e3)
-
-leaflet(data = foo) %>% addProviderTiles("Esri.NatGeoWorldMap") %>%
-  addCircleMarkers(~ pickup_longitude, ~pickup_latitude, radius = 1,
-                   color = "blue", fillOpacity = 0.3)
+leaflet() %>% 
+  addProviderTiles("Esri.NatGeoWorldMap")
 ```
