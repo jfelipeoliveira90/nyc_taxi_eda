@@ -6,29 +6,6 @@ title: "NYC Taxi EDA"
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
 ```
 
-```{r definition}
-library('ggplot2') # visualisation
-library('scales') # visualisation
-library('grid') # visualisation
-library('RColorBrewer') # visualisation
-library('corrplot') # visualisation
-library('alluvial') # visualisation
-library('dplyr') # data manipulation
-library('readr') # input/output
-library('data.table') # data manipulation
-library('tibble') # data wrangling
-library('tidyr') # data wrangling
-library('stringr') # string manipulation
-library('forcats') # factor manipulation
-library('lubridate') # date and time
-library('geosphere') # geospatial locations
-library('leaflet') # maps
-library('leaflet.extras') # maps
-library('maps') # maps
-library('xgboost') # modelling
-library('caret') # modelling
-```
-
 ## Explicação do problema
 
 Queremos examinar quais fatores contribuem para períodos de viagem mais curtos ou mais longos nas viagens de táxi em Nova York.
@@ -59,15 +36,50 @@ Ponto interessante aqui foi a análise dos dados de uma outra pespectiva, no cas
 
 ## Novos comandos
 
-Similar ao 'read.table' só que mais rápido
+#### Similar ao 'read.table' só que mais rápido
 
 ```{r, echo=TRUE}
-fread('./data/train.csv') %>%
-  summary()
+library('data.table')
+
+fread('./data/train.csv')
 ```
 
-Exibe um mapa interativo
+#### Exibe um mapa interativo
 ```{r,echo=TRUE}
+library('leaflet')
+
 leaflet() %>% 
   addProviderTiles("Esri.NatGeoWorldMap")
+```
+
+#### Calcula a distância mais curta entre dois pontos
+```{r,echo=TRUE}
+library('geosphere')
+
+distCosine(c(-73.98215,40.76794), c(-73.98042,40.73856))
+```
+
+#### Obter pontos intermediários (de referência) entre duas coordenadas
+```{r,echo=TRUE}
+library('geosphere')
+
+gcIntermediate(c(-73.98215,40.76794), c(-73.98042,40.73856), n = 5)
+```
+
+#### Essa é uma maneira segura de comparar se dois vetores de números de ponto flutuante são (em pares) iguais. Isso é mais seguro do que usar ==, porque possui uma tolerância integrada
+```{r,echo=TRUE}
+library('dplyr')
+
+near(sqrt(2) ^ 2, 2)
+```
+
+#### Desenho de diagramas aluviais, também conhecidos como gráficos de conjuntos paralelos.
+```{r,echo=TRUE}
+library('alluvial')
+
+tit <- as.data.frame(Titanic)
+tit2d <- aggregate( Freq ~ Class + Survived, data=tit, sum)
+alluvial( tit2d[,1:2], freq=tit2d$Freq, xw=0.0, alpha=0.8,
+         gap.width=0.1, col= "steelblue", border="white",
+         layer = tit2d$Survived != "Yes" )
 ```
