@@ -45,9 +45,19 @@ Obtendo os dados dos boletins meteorológicos do período em questão, podemos c
 
 ![](./images/unnamed-chunk-55-1.png)
 
+### Data e hora da corrida VS duração
 
+![](./images/unnamed-chunk-24-1.png)
+Como podemos ver no gráfico acima, entre terça e sexta-feira são os dias com mais duração de tempo, e esse padrão é similar para os dois vendor_id.
+No gráfico seguinte, ao longo do dia encontramos um pico no início da tarde.
 
-## Comandos aprendidos
+### Visualizando características individuais
+
+![](./images/unnamed-chunk-map.png)
+
+Ponto interessante aqui foi a análise dos dados de uma outra pespectiva, no caso em um mapa. Analisando a imagem percebemos que quase todas as viagens foram de fato feitas apenas em Manhattan. Outro ponto notável é o aeroporto JFK para o sul-leste da cidade.
+
+## Novos comandos
 
 Similar ao 'read.table' só que mais rápido
 
