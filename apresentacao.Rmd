@@ -29,6 +29,10 @@ library('xgboost') # modelling
 library('caret') # modelling
 ```
 
+## Explicação do problema
+
+Queremos examinar quais fatores contribuem para períodos de viagem mais curtos ou mais longos nas viagens de táxi em Nova York.
+
 ## Insights
 
 Foi identificado uma queda nas corridas entre os meses de Janeiro e Fevereiro, uma possível causa seja o inverno em Nova York.
